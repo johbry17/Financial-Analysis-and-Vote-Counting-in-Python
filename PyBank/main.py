@@ -44,8 +44,13 @@ def do_stuff(info):
          net_profit = net_profit + monthly_profit
          
          if month_count == 0:
+            last_month = monthly_profit
+            total_change = 0
             month_count += 1
          else:
+            current_month = monthly_profit
+            change = current_month - last_month
+            total_change = total_change + change
             month_count +=1
 
          if monthly_profit > increase:
@@ -54,27 +59,9 @@ def do_stuff(info):
          if monthly_profit < decrease:
              decrease = monthly_profit
              decrease_date = date
-        # date = {"Date" ; value}
-        # If month_count != true
-            # last_month_profit = profit
-            # month_variable = 1
-            # net_profit = profit
-            # increase = profit
-            # decrease = profit
-            # increase_date = date
-            # decrease_date = date
-        # Else
-            # month_variable++
-            # current_month_profit = profit
+
             # change_from_last_month = current_month_profit - last_month_profit
             # net_profit = net_profit + profit
-            # last_month_profit = profit
-            # If profit > increase
-                # increase = profit
-                # increase_date = date
-            # Elif profit < decrease
-                # decrease = profit
-                # decrease_date = date
     
     # TODO
     # Average change calculation
@@ -85,8 +72,11 @@ def do_stuff(info):
     # return average of changes in profit/losses over time
     # return greatest increase in profits (date and amount)
     # return greatest decrease in profits (date and amount)
+    average = total_change / month_count
     print(increase_date)
     print(decrease_date)
+    print(total_change)
+    print(average)
     # TODO
     #ensure the variables are passed correctly to print_output
     months = month_count
