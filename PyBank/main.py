@@ -2,24 +2,25 @@ import csv
 
 def main():
 
-    # declare a csv_list [] to store the csv
+    # declare an empty list [] to store the csv
     list = []
 
     # first, open the file to read over
-    # TODO remove "/Pybank" below
-    # only using this filename temporarily for the debugger
     with open('./Resources/budget_data.csv') as file:
         reader = csv.DictReader(file)
             # TODO Successfully store header row - Why?
             # this append loop will successfully re-write the headers anyway
             # maybe that's all they mean in the instructions?
         header = reader.fieldnames
+        # store csv file in list
         for row in reader:
                 list.append(row)
 
+    # call function to iterate over list and extract results
     do_stuff(list)
 
 
+# finds requested data
 def do_stuff(info):
     
     # declare variables
@@ -29,26 +30,32 @@ def do_stuff(info):
     increase = 0
     decrease = 0
 
-    # For loop to column_length
+    
     for dict in info:
          
          # grab values for current row's cells
          monthly_profit = int(list(dict.values())[1])
          date = str(list(dict.values())[0])
 
+         # adds current months profit to net_profit
          net_profit = net_profit + monthly_profit
          
+         # sets some initial variables
          if month_count == 0:
             last_month = monthly_profit
-            total_change = monthly_profit
+            total_change = 0
             month_count += 1
+        # does the work
          else:
+            # computes change in profit between the current_month and the last_month
             current_month = monthly_profit
             change = current_month - last_month
             last_month = monthly_profit
+            # updates total_change and month_count
             total_change = total_change + change
             month_count +=1
 
+         # compares change with increase or decrease, updates if a more extreme value is found
          if change > increase:
             increase = change
             increase_date = date
@@ -56,31 +63,15 @@ def do_stuff(info):
              decrease = change
              decrease_date = date
 
-            # change_from_last_month = current_month_profit - last_month_profit
-            # net_profit = net_profit + profit
-    
-    # TODO
-    # Average change calculation
-        # Is this just net_profit/month_count?
-        # Or average 
+    # calculates average of changes in profit/losses over time
+    average = total_change / (month_count-1)
 
-    # pass these values to print_output
-    # return average of changes in profit/losses over time
-    # return greatest increase in profits (date and amount)
-    # return greatest decrease in profits (date and amount)
-    average = total_change / month_count
-    print(increase_date)
-    print(decrease_date)
-    print(total_change)
-    print(average)
-    # TODO
-    #ensure the variables are passed correctly to print_output
+    # call function to print results to terminal
     months = month_count
     total_change = net_profit
-    avg_change = "TODO"
+    avg_change = f"{average:.2f}"
     increase = f"{increase_date} (${increase})"
     decrease = f"{decrease_date} (${decrease})"
-    # call function to print results to terminal
     print_output(months, total_change, avg_change, increase, decrease)
 
     # TODO
@@ -93,7 +84,7 @@ def print_output(months, total_change, avg_change, increase, decrease):
     print("----------------------------")
     print(f"Total Months: {months}")
     print(f"Total: ${total_change}")
-    print("Average Change:", avg_change)
+    print(f"Average Change: ${avg_change}")
     print("Greatest Increase in Profits:", increase)
     print("Greatest Decrease in Profits:", decrease)
 
