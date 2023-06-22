@@ -6,7 +6,9 @@ def main():
     list = []
 
     # first, open the file to read over
-    with open("./Resources/budget_data.csv") as file:
+    # TODO remove "/Pybank" below
+    # only using this filename temporarily for the debugger
+    with open('./Resources/budget_data.csv') as file:
         reader = csv.DictReader(file)
             # TODO Successfully store header row - Why?
             # this append loop will successfully re-write the headers anyway
@@ -23,16 +25,9 @@ def do_stuff(info):
     # declare variables
     month_count = 0
     net_profit = 0
+    change = 0
     increase = 0
     decrease = 0
-        # last_month_profit
-        # current_month_profit
-        # change_from_last_month
-        # total_change
-        # increase
-        # decrease
-        # increase_date
-        # decrease_date
 
     # For loop to column_length
     for dict in info:
@@ -45,19 +40,20 @@ def do_stuff(info):
          
          if month_count == 0:
             last_month = monthly_profit
-            total_change = 0
+            total_change = monthly_profit
             month_count += 1
          else:
             current_month = monthly_profit
             change = current_month - last_month
+            last_month = monthly_profit
             total_change = total_change + change
             month_count +=1
 
-         if monthly_profit > increase:
-            increase = monthly_profit
+         if change > increase:
+            increase = change
             increase_date = date
-         if monthly_profit < decrease:
-             decrease = monthly_profit
+         if change < decrease:
+             decrease = change
              decrease_date = date
 
             # change_from_last_month = current_month_profit - last_month_profit
@@ -82,8 +78,8 @@ def do_stuff(info):
     months = month_count
     total_change = net_profit
     avg_change = "TODO"
-    increase = "TODO"
-    decrease = "TODO"
+    increase = f"{increase_date} (${increase})"
+    decrease = f"{decrease_date} (${decrease})"
     # call function to print results to terminal
     print_output(months, total_change, avg_change, increase, decrease)
 
