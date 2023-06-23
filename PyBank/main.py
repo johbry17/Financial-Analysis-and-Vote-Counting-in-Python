@@ -98,4 +98,5 @@ def print_output(months, total_change, avg_change, increase, decrease):
     print("Greatest Decrease in Profits:", decrease)
 
 
-main()
+if __name__ == "__main__":
+    main()
