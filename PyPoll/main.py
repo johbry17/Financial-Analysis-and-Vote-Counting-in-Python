@@ -6,12 +6,26 @@ def main():
 
     # declare variables
     votes = 0
+    candidates = []
+    candidate_votes = []
 
     for row in data:
+        name = row['Candidate']
+
+        # collects total votes
         votes += 1
 
-
-
+        # add new candidate if necessary
+        if name not in candidates:
+            candidates.append(name)
+            candidate_votes.append(int(0))
+        if name in candidates:
+            # add to vote total for each candidate
+            index = candidates.index(name)
+            candidate_votes[index] += 1
+    
+    print(candidates)
+    print(candidate_votes)
 
     output=f'''
     Election Results
@@ -30,10 +44,6 @@ def main():
 
     my_report.write(output)
 
-# returns results of data processing  
-
-    # return total number of votes
-        # simple counter that increases with each row
     # return complete list of candidates
         # use a set? TODO - 
         # or check for a new name every time, then append to a list of {candidate : votes}?

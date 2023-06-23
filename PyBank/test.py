@@ -30,6 +30,7 @@ for row in data:
         dec[1] = row['Date']
 
     prev_rev = rev
+
 output = f'''
 Financial Analysis
 ----------------------------
