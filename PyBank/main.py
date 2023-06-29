@@ -1,5 +1,4 @@
 import csv
-import sys
 
 
 def main():
@@ -9,16 +8,16 @@ def main():
     # first, open the file to read over
     with open("./Resources/budget_data.csv") as file:
         reader = csv.DictReader(file)
-        # TODO Successfully store header row - Why?
-        # this append loop will successfully re-write the headers anyway
-        # maybe that's all they mean in the instructions?
-        header = reader.fieldnames
         # store csv file in list
         for row in reader:
             list.append(row)
 
     # call function to iterate over list and extract results
-    do_stuff(list)
+    results = do_stuff(list)
+
+    # print output to terminal and save to a file
+    print(print_output(*results))
+    write_output(print_output(*results))
 
 
 # finds requested data
@@ -32,9 +31,8 @@ def do_stuff(data):
 
     for dict in data:
         # grab values for current row
-        # has to be a better way to reference these, by the header value
-        monthly_profit = int(list(dict.values())[1])
-        date = str(list(dict.values())[0])
+        monthly_profit = int(dict["Profit/Losses"])
+        date = dict["Date"]
 
         # updates net_profit
         net_profit = net_profit + monthly_profit
@@ -62,40 +60,32 @@ def do_stuff(data):
             decrease_date = date
 
     # calculates average of changes in profit/losses over time
-    # month_count-1, as the first month had no change to add to total_change
+    # month_count-1, accounting for the lack of change during the initial month
     average = total_change / (month_count - 1)
 
     # call function to print results to terminal
-    months = month_count
-    total_change = net_profit
-    avg_change = f"{average:.2f}"
     increase = f"{increase_date} (${increase})"
     decrease = f"{decrease_date} (${decrease})"
-    print_output(months, total_change, avg_change, increase, decrease)
-
-    # export results to text file by diverting terminal std output
-    # first save the original stdout
-    original_stdout = sys.stdout
-
-    # Open a file for writing
-    with open("./analysis/output.txt", "w") as file:
-        # Redirect the stdout to the file
-        sys.stdout = file
-        print_output(months, total_change, avg_change, increase, decrease)
-
-    # Restore the original stdout
-    sys.stdout = original_stdout
+    results = [month_count, net_profit, f"{average:.2f}", increase, decrease]
+    return results
 
 
 # prints everything to terminal
 def print_output(months, total_change, avg_change, increase, decrease):
-    print("Financial Analysis")
-    print("----------------------------")
-    print(f"Total Months: {months}")
-    print(f"Total: ${total_change}")
-    print(f"Average Change: ${avg_change}")
-    print("Greatest Increase in Profits:", increase)
-    print("Greatest Decrease in Profits:", decrease)
+    output = f"""Financial Analysis
+    ----------------------------
+    Total Months: {months}
+    Total: ${total_change}
+    Average Change: ${avg_change}
+    Greatest Increase in Profits: {increase}
+    Greatest Decrease in Profits: {decrease}"""
+    return output
+
+
+# saves print_output function to file
+def write_output(output):
+    with open("./analysis/output.txt", "w") as file:
+        file.write(output)
 
 
 if __name__ == "__main__":
