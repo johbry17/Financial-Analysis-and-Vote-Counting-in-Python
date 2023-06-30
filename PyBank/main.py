@@ -2,6 +2,11 @@ import csv
 
 
 def main():
+    """
+    Compare and contrast with PyPoll.
+    PyBank's excessive, but was fun to play with.
+    PyPoll is sleeker and generally better designed.
+    """
     # declare an empty list [] to store the csv
     list = []
 
