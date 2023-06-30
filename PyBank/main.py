@@ -68,14 +68,14 @@ def do_stuff(data):
     # month_count-1, accounting for the lack of change during the initial month
     average = total_change / (month_count - 1)
 
-    # call function to print results to terminal
+    # return list of results for printing
     increase = f"{increase_date} (${increase})"
     decrease = f"{decrease_date} (${decrease})"
     results = [month_count, net_profit, f"{average:.2f}", increase, decrease]
     return results
 
 
-# prints everything to terminal
+# prints summary of results to terminal
 def print_output(months, total_change, avg_change, increase, decrease):
     output = f"""
     Financial Analysis
@@ -89,7 +89,7 @@ def print_output(months, total_change, avg_change, increase, decrease):
     return output
 
 
-# saves print_output function to file
+# writes print_out results to a file
 def write_output(output):
     with open("./analysis/output.txt", "w") as file:
         file.write(output)

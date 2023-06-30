@@ -23,8 +23,8 @@ for row in data:
     if name not in candidates:
         candidates.append(name)
         candidate_votes.append(int(0))
+    # adds indivdual vote to appropriate candidate's vote count
     if name in candidates:
-        # add to vote total for each candidate
         index = candidates.index(name)
         candidate_votes[index] += 1
 
@@ -55,8 +55,8 @@ Winner: {winner}
 -------------------------
 """
 
-# print results to terminal
+# print output to terminal
 print(output)
 
-# writes results and saves to a .txt file
+# writes output to a .txt file
 results.write(output)
