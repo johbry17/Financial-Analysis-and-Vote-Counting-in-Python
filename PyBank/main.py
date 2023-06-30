@@ -77,13 +77,15 @@ def do_stuff(data):
 
 # prints everything to terminal
 def print_output(months, total_change, avg_change, increase, decrease):
-    output = f"""Financial Analysis
+    output = f"""
+    Financial Analysis
     ----------------------------
     Total Months: {months}
     Total: ${total_change}
     Average Change: ${avg_change}
     Greatest Increase in Profits: {increase}
-    Greatest Decrease in Profits: {decrease}"""
+    Greatest Decrease in Profits: {decrease}
+    """
     return output
 
 
