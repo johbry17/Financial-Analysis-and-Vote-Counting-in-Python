@@ -4,13 +4,13 @@ Development on this project has stopped
 
 ## Description
 
-Two different functions, PyBank and PyPoll.
+Two different scripts, PyBank and PyPoll.
 
-PyBank analyzes a .csv of financial data and returns the total number of months available, total profits, average monthly change, and greatest monthly % increase and decrease (with month).
+PyBank analyzes budget_data.csv, containing financial records for a company, and returns the total number of months available, total profits over time, average monthly change in profits/losses, and greatest monthly % increase in profits (with month) and decrease in losses (with month).
 
-PyPoll analyzes a .csv of voting data and returns the total number of votes, the winnner, and a list of each candidate's name, % of votes won, and number of votes won.
+PyPoll analyzes election_data.csv, containing voting data for an election in a small town, and returns the total number of votes, the winnner of the election, and a list of each candidate's performance, including name, % of votes won, and number of votes won.
 
-Both PyBank and PyPoll print out the results to the terminal, and write those same results to a basic .txt file.
+Both PyBank and PyPoll print out the results to the terminal, and write those same results to a basic .txt file in subfolder analysis.
 
 ## Usage
 
