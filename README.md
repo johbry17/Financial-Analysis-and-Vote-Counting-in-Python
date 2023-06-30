@@ -18,7 +18,7 @@ Run each program from the command line or an IDE like VS Code. Terminal output s
 
 PyBank:
 
-![PyBank](output_Pybank.png)
+![PyBank](output_PyBank.png)
 
 PyPoll:
 
