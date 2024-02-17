@@ -9,7 +9,7 @@ Development on this project has stopped
 
 ## Description
 
-Two different scripts, PyBank and PyPoll.
+Two different scripts, PyBank and PyPoll. I like this project because both scripts take different routes to accomplish essentially the same task, a basic data analysis of a `*.csv` file.
 
 PyBank analyzes budget_data.csv, containing financial records for a company, and returns the total number of months available, total profits over time, average monthly change in profits/losses, and greatest monthly % increase in profits (with month) and decrease in losses (with month).
 
