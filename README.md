@@ -1,4 +1,4 @@
-## Module 3 Challenge, 6 July 2023, Python Challenge
+## Module 3 Challenge, 6 July 2023, Financial Analysis and Vote Counting in Python
 
 Development on this project has stopped
 
