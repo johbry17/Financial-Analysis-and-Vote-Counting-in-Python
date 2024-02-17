@@ -1,6 +1,11 @@
-## Module 3 Challenge, 6 July 2023, Financial Analysis and Vote Counting in Python
+## Financial Analysis and Vote Counting in Python
 
 Development on this project has stopped
+
+- [Description](#description)
+- [Usage](#usage)
+- [Acknowledgements](#acknowledgements)
+- [Author](#author)
 
 ## Description
 
